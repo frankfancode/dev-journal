@@ -1,8 +1,7 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_journal/nest_scroll_page.dart';
+import 'package:flutter_journal/pull_refresh_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_sliver_page.dart';
 
@@ -11,8 +10,10 @@ void main() {
 }
 
 final routes = {
-  CustomSliverPage.routeName: (BuildContext context) => const CustomSliverPage(),
+  CustomSliverPage.routeName: (BuildContext context) =>
+      const CustomSliverPage(),
   NestScrollPage.routeName: (BuildContext context) => const NestScrollPage(),
+  PullRefreshPage.routeName: (BuildContext context) => const PullRefreshPage(),
 };
 
 final routeList = routes.keys.toList();
@@ -23,14 +24,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      routes: routes,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return ScreenUtilInit(
+      designSize: const Size(750 / 2, 1334 / 2),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        routes: routes,
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      )
     );
   }
 }
@@ -55,6 +61,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -65,9 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, routeList[index]);
-                setState(() {
-
-                });
+                setState(() {});
               },
               child: Container(
                 color: Colors.blueAccent.shade100,
