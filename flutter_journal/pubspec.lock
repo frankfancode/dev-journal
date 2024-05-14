@@ -65,10 +65,11 @@ packages:
   flutter_easyrefresh:
     dependency: "direct main"
     description:
-      path: "../../flutter_easy_refresh"
-      relative: true
-    source: path
-    version: "2.2.2"
+      name: flutter_easyrefresh
+      sha256: e645ad471bb8d7b6dbefbb858297d3870ace4f28730a6a94db38fc0438a6ca61
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.1"
   flutter_lints:
     dependency: "direct dev"
     description:

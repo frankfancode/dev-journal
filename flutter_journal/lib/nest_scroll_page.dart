@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 /// learn from https://book.flutterchina.club/chapter6/nestedscrollview.html#_6-12-3-sliverappbar
 class NestScrollPage extends StatefulWidget {
   static const String routeName = 'NestScrollPage';
@@ -41,7 +40,7 @@ class _NestScrollPageState extends State<NestScrollPage> {
         //     itemExtent: 30)
       ];
     }, body: Builder(builder: (BuildContext context) {
-      return CustomScrollView(slivers: [
+      return CustomScrollView(slivers: <Widget>[
         SliverOverlapInjector(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
         SliverFixedExtentList.builder(

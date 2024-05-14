@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 /// learn this from https://book.flutterchina.club/chapter6/sliver.html#_6-11-1-sliver-%E5%B8%83%E5%B1%80%E5%8D%8F%E8%AE%AE
 class CustomSliverPage extends StatefulWidget {
   static const String routeName = 'CustomSliverPage';
+
   const CustomSliverPage({super.key});
 
   @override
@@ -13,18 +14,21 @@ class CustomSliverPage extends StatefulWidget {
 }
 
 class _CustomSliverPageState extends State<CustomSliverPage> {
-  double headerHeight=100;
+  double headerHeight = 100;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(color: Colors.transparent,),
+        title: Container(
+          color: Colors.transparent,
+        ),
       ),
       body: Material(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
-          slivers: [
+          slivers: <Widget>[
             SliverFlexibleHeader(
               visibleExtent: headerHeight,
               builder: (BuildContext context, double maxExtent,
@@ -37,15 +41,17 @@ class _CustomSliverPageState extends State<CustomSliverPage> {
               },
             ),
             SliverToBoxAdapter(
-              child: ElevatedButton(onPressed: (){
-                setState(() {
-                   headerHeight = headerHeight==100? 200:100;
-                });
-              }, child: Text('reset')),
+              child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      headerHeight = headerHeight == 100 ? 200 : 100;
+                    });
+                  },
+                  child: const Text('reset')),
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (_, index) => ListTile(title: Text('$index')),
+                (_, int index) => ListTile(title: Text('$index')),
                 childCount: 100,
               ),
             )
@@ -66,10 +72,10 @@ typedef SliverFlexibleHeaderBuilder = Widget Function(
 /// dragging over scroll . Typically as the first child  of [CustomScrollView].
 class SliverFlexibleHeader extends StatelessWidget {
   const SliverFlexibleHeader({
-    Key? key,
+    super.key,
     this.visibleExtent = 0,
     required this.builder,
-  }) : super(key: key);
+  });
 
   final SliverFlexibleHeaderBuilder builder;
   final double visibleExtent;
@@ -94,10 +100,9 @@ class SliverFlexibleHeader extends StatelessWidget {
 
 class _SliverFlexibleHeader extends SingleChildRenderObjectWidget {
   const _SliverFlexibleHeader({
-    Key? key,
-    required Widget child,
+    required Widget super.child,
     this.visibleExtent = 0,
-  }) : super(key: key, child: child);
+  });
   final double visibleExtent;
 
   @override
@@ -106,7 +111,7 @@ class _SliverFlexibleHeader extends SingleChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(context, _FlexibleHeaderRenderSliver renderObject) {
+  void updateRenderObject(BuildContext context, _FlexibleHeaderRenderSliver renderObject) {
     renderObject.visibleExtent = visibleExtent;
   }
 }
@@ -183,13 +188,13 @@ class _FlexibleHeaderRenderSliver extends RenderSliverSingleBoxAdapter {
 
     // 下拉过程中overlap会一直变化.
     double overScroll = constraints.overlap < 0 ? constraints.overlap.abs() : 0;
-    var scrollOffset = constraints.scrollOffset;
+    double scrollOffset = constraints.scrollOffset;
     _direction = ScrollDirection.idle;
 
     // 根据前后的overScroll值之差确定列表滑动方向。注意，不能直接使用 constraints.userScrollDirection，
     // 这是因为该参数只表示用户滑动操作的方向。比如当我们下拉超出边界时，然后松手，此时列表会弹回，即列表滚动
     // 方向是向上，而此时用户操作已经结束，ScrollDirection 的方向是上一次的用户滑动方向(向下)，这时便有问题。
-    var distance = overScroll > 0
+    double distance = overScroll > 0
         ? overScroll - _lastOverScroll
         : _lastScrollOffset - scrollOffset;
     _lastOverScroll = overScroll;

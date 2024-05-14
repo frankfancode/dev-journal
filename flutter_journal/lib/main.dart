@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal/nest_scroll_page.dart';
+import 'package:flutter_journal/pin_header_page.dart';
 import 'package:flutter_journal/pull_refresh_page.dart';
+import 'package:flutter_journal/snap_appbar_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_sliver_page.dart';
@@ -9,14 +11,18 @@ void main() {
   runApp(const MyApp());
 }
 
-final routes = {
+final Map<String, StatefulWidget Function(BuildContext context)> routes =
+    <String, StatefulWidget Function(BuildContext context)>{
   CustomSliverPage.routeName: (BuildContext context) =>
       const CustomSliverPage(),
   NestScrollPage.routeName: (BuildContext context) => const NestScrollPage(),
   PullRefreshPage.routeName: (BuildContext context) => const PullRefreshPage(),
+  PinHeaderPage.routeName: (BuildContext context) => const PinHeaderPage(),
+  SliverOverlapAbsorberUsagePage.routeName: (BuildContext context) =>
+      const SliverOverlapAbsorberUsagePage(),
 };
 
-final routeList = routes.keys.toList();
+final List<String> routeList = routes.keys.toList();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -25,19 +31,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(750 / 2, 1334 / 2),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        routes: routes,
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      )
-    );
+        designSize: const Size(750 / 2, 1334 / 2),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          routes: routes,
+          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        ));
   }
 }
 

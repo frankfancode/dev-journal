@@ -10,14 +10,14 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
     required this.maxHeight,
     this.minHeight = 0,
     required Widget child,
-  })  : builder = ((a, b, c) => child),
+  })  : builder = ((BuildContext a, double b, bool c) => child),
         assert(minHeight <= maxHeight && minHeight >= 0);
 
   //最大和最小高度相同
   SliverHeaderDelegate.fixedHeight({
     required double height,
     required Widget child,
-  })  : builder = ((a, b, c) => child),
+  })  : builder = ((BuildContext a, double b, bool c) => child),
         maxHeight = height,
         minHeight = height;
 
