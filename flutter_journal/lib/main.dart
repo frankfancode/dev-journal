@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal/nest_scroll_page.dart';
+import 'package:flutter_journal/parallax_scrolling_page.dart';
 import 'package:flutter_journal/pin_header_page.dart';
 import 'package:flutter_journal/position_page.dart';
 import 'package:flutter_journal/pull_refresh_page.dart';
@@ -23,6 +24,8 @@ final Map<String, StatefulWidget Function(BuildContext context)> routes =
       const SliverOverlapAbsorberUsagePage(),
   WidgetPositionPage.routeName: (BuildContext context) =>
       const WidgetPositionPage(),
+  ParallaxScrollingPage.routeName: (BuildContext context) =>
+      const ParallaxScrollingPage(),
 };
 
 final List<String> routeList = routes.keys.toList();
