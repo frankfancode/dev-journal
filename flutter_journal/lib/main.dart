@@ -4,6 +4,10 @@ import 'package:flutter_journal/parallax_scrolling_page.dart';
 import 'package:flutter_journal/pin_header_page.dart';
 import 'package:flutter_journal/position_page.dart';
 import 'package:flutter_journal/pull_refresh_page.dart';
+import 'package:flutter_journal/scroll/basic_pin_page.dart';
+import 'package:flutter_journal/scroll/basic_scroll_page.dart';
+import 'package:flutter_journal/scroll/center_scroll_page.dart';
+import 'package:flutter_journal/scroll/custom_basic_scroll_page.dart';
 import 'package:flutter_journal/snap_appbar_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,6 +30,12 @@ final Map<String, StatefulWidget Function(BuildContext context)> routes =
       const WidgetPositionPage(),
   ParallaxScrollingPage.routeName: (BuildContext context) =>
       const ParallaxScrollingPage(),
+  BasicScrollPage.routeName: (BuildContext context) => const BasicScrollPage(),
+  CenterOffssetScrollPage.routeName: (BuildContext context) =>
+      const CenterOffssetScrollPage(),
+  CustomBasicScrollPage.routeName: (BuildContext context) =>
+      const CustomBasicScrollPage(),
+  BasicPinnedPage.routeName: (BuildContext context) => const BasicPinnedPage(),
 };
 
 final List<String> routeList = routes.keys.toList();
