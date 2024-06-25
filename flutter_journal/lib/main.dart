@@ -4,6 +4,7 @@ import 'package:flutter_journal/parallax_scrolling_page.dart';
 import 'package:flutter_journal/pin_header_page.dart';
 import 'package:flutter_journal/position_page.dart';
 import 'package:flutter_journal/pull_refresh_page.dart';
+import 'package:flutter_journal/scroll/customscrollview_absorber_case_one.dart';
 import 'package:flutter_journal/scroll/basic_pin_page.dart';
 import 'package:flutter_journal/scroll/basic_scroll_page.dart';
 import 'package:flutter_journal/scroll/center_scroll_page.dart';
@@ -36,6 +37,8 @@ final Map<String, StatefulWidget Function(BuildContext context)> routes =
   CustomBasicScrollPage.routeName: (BuildContext context) =>
       const CustomBasicScrollPage(),
   BasicPinnedPage.routeName: (BuildContext context) => const BasicPinnedPage(),
+  CustomScrollViewWithAbsorberCase.routeName: (BuildContext context) =>
+      const CustomScrollViewWithAbsorberCase(),
 };
 
 final List<String> routeList = routes.keys.toList();

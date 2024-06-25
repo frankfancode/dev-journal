@@ -55,8 +55,8 @@ class _PinHeaderPageState extends State<PinHeaderPage> {
               delegate: MyPinnedPersistentHeaderDelegate(
                 height: 88.w,
                 child: Container(
-                  padding: EdgeInsets.only(top: 44.w),
-                  color: Colors.transparent,
+                  // padding: EdgeInsets.only(top: 44.w),
+                  color: Colors.deepPurpleAccent,
                   child: Container(
                     color: Colors.white30,
                     child: const Center(
@@ -68,6 +68,7 @@ class _PinHeaderPageState extends State<PinHeaderPage> {
             ),
           );
         }),
+
         SliverToBoxAdapter(
           child: Container(
             height: 120.w,
@@ -97,6 +98,11 @@ class _PinHeaderPageState extends State<PinHeaderPage> {
               color: Colors.deepPurple,
               child: const Text('tab'),
             ))),
+        SliverPersistentHeaderToBox(
+            child: Container(
+          height: 100,
+          color: Colors.black,
+        )),
         SliverList.builder(
           itemBuilder: (BuildContext context, int index) {
             return Container(
@@ -315,11 +321,11 @@ class _RenderSliverPersistentHeaderToBox extends RenderSliverSingleBoxAdapter {
     // Utils.log('constraints childExtent $childExtent ${offseta.dy}');
     geometry = SliverGeometry(
       scrollExtent: childExtent,
-      paintOrigin: -constraints
-          .scrollOffset, // 固定，如果不想固定应该传` - constraints.scrollOffset`
+      paintOrigin: constraints.overlap, // 固定，如果不想固定应该传` - constraints.scrollOffset`
       paintExtent: childExtent,
       maxPaintExtent: childExtent,
     );
+    
   }
 
   // 重要，必须重写，下面介绍。
@@ -590,8 +596,6 @@ class RenderSliverOverlapAbsorber extends RenderSliver
           childLayoutGeometry.paintExtent -
               childLayoutGeometry.maxScrollObstructionExtent),
     );
- 
-    
 
     debugPrint(
         'fdeg RenderSliverOverlapAbsorber performLayout geometry:${geometry?.paintOrigin}, constraints:$constraints');
